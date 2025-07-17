@@ -17,6 +17,7 @@ h1 {
   gap: 1rem;
   overflow-x: auto;
   padding-bottom: 10px;
+  /* para que se vea años horizontal y ramos vertical */
 }
 
 /* Cada columna de año */
@@ -86,6 +87,7 @@ h1 {
   transition: 0.3s;
   user-select: none;
   white-space: nowrap;
+  text-align: center;
 }
 
 /* Color base de borde para ramo */
@@ -114,21 +116,54 @@ h1 {
   border-color: #ccc;
 }
 
-/* botón reset */
+/* botón reset (sol / luna) */
 #resetBtn {
-  background-color: #a3c9f1; /* celeste pastel */
-  color: #234a74;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #a3c9f1;
+  border-radius: 50%;
   border: none;
-  padding: 10px 30px;
-  font-size: 1.1rem;
-  border-radius: 9999px; /* forma elipse */
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: 600;
   box-shadow: 0 3px 6px rgba(35, 74, 116, 0.3);
+  transition: background-color 0.3s;
   user-select: none;
+  outline: none;
 }
 
+/* icono sol */
+#resetBtn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  background: #234a74;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 -12px 0 #234a74,
+    0 12px 0 #234a74,
+    12px 0 0 #234a74,
+    -12px 0 0 #234a74,
+    8.5px 8.5px 0 #234a74,
+    -8.5px 8.5px 0 #234a74,
+    8.5px -8.5px 0 #234a74,
+    -8.5px -8.5px 0 #234a74; /* rayos del sol */
+  transition: all 0.3s ease;
+}
+
+/* icono luna al hover */
 #resetBtn:hover {
   background-color: #7db0e8;
+}
+
+#resetBtn:hover::before {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: none;
+  background: radial-gradient(circle at 12px 12px, transparent 12px, #234a74 13px);
+  /* efecto media luna: círculo recortado */
 }
